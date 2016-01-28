@@ -4,7 +4,7 @@ var port = process.env.PORT;
 var ip = process.env.IP;
 var app = express();
 
-app.get('/', function getRoot(req, res){
+app.get('/', function getRoot(req, res) {
   res.end('<!doctype html>\
   <html lang="en">\
   \
