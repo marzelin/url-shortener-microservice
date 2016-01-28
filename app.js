@@ -4,6 +4,12 @@ var port = process.env.PORT;
 var ip = process.env.IP;
 var app = express();
 
+app.get('/new/*?', function getNewLink(req, res) {
+  var url = req.params[0];
+
+  res.end('url: ' + url);
+});
+
 app.get('/', function getRoot(req, res) {
   res.end('<!doctype html>\
   <html lang="en">\
