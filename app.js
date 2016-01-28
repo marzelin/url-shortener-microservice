@@ -4,10 +4,34 @@ var port = process.env.PORT;
 var ip = process.env.IP;
 var app = express();
 
+var urls = [];
+
 app.get('/new/*?', function getNewLink(req, res) {
   var url = req.params[0];
+  var retObj;
 
-  res.end('url: ' + url);
+  urls.some(function isUrlThere(urlObj) {
+    if (urlObj.original_url === url) {
+      retObj = urlObj;
+      return true;
+    }
+    return false;
+  });
+
+  if(!retObj) {
+    var host = req.get('host');
+
+    var retObj = {
+      original_url: url,
+      short_url: host + '/' + urls.length,
+    };
+
+    urls.push(retObj);
+  }
+
+  console.log(urls.length);
+
+  res.json(retObj);
 });
 
 app.get('/', function getRoot(req, res) {
