@@ -1,0 +1,27 @@
+{
+  "name": "url-shortener-microservice",
+  "private": true,
+  "version": "0.0.1",
+  "description": "url shortener microservice",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marzelin/url-shortener-microservice.git"
+  },
+  "keywords": [
+    "url",
+    "shortener",
+    "microservice"
+  ],
+  "author": "marzelin@gmail.com",
+  "bugs": {
+    "url": "https://github.com/marzelin/url-shortener-microservice/issues"
+  },
+  "homepage": "https://github.com/marzelin/url-shortener-microservice#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
