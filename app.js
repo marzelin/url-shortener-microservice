@@ -21,7 +21,7 @@ app.get('/new/*?', function getNewLink(req, res) {
   if(!retObj) {
     var host = req.get('host');
 
-    var retObj = {
+    retObj = {
       original_url: url,
       short_url: host + '/' + urls.length,
     };
