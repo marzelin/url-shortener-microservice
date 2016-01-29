@@ -29,8 +29,6 @@ app.get('/new/*?', function getNewLink(req, res) {
     urls.push(retObj);
   }
 
-  console.log(urls.length);
-
   res.json(retObj);
 });
 
