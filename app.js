@@ -39,7 +39,7 @@ app.get('/new/*?', function getNewLink(req, res) {
   } else {
     var errorObj = {
       error: 'URL invalid'
-    }
+    };
     res.json(errorObj);
   }
 });
