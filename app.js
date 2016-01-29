@@ -23,7 +23,7 @@ app.get('/new/*?', function getNewLink(req, res) {
 
     retObj = {
       original_url: url,
-      short_url: host + '/' + urls.length,
+      short_url: 'http://' + host + '/' + urls.length,
     };
 
     urls.push(retObj);
