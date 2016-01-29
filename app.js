@@ -32,6 +32,20 @@ app.get('/new/*?', function getNewLink(req, res) {
   res.json(retObj);
 });
 
+app.get('/:urlIndex', function serveShotenedUrl(req, res){
+  var urlIndex = req.params['urlIndex'];
+  var urlObj = urls[urlIndex];
+  if(urlObj === undefined) {
+    urlObj = {
+      error: 'No short url found for a given input'
+    };
+    res.json(urlObj);
+  } else {
+    res.redirect(urlObj.original_url);
+  }
+
+});
+
 app.get('/', function getRoot(req, res) {
   res.end('<!doctype html>\
   <html lang="en">\
