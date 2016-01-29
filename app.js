@@ -43,7 +43,6 @@ app.get('/:urlIndex', function serveShotenedUrl(req, res){
   } else {
     res.redirect(urlObj.original_url);
   }
-
 });
 
 app.get('/', function getRoot(req, res) {
