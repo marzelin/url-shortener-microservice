@@ -7,29 +7,41 @@ var app = express();
 var urls = [];
 
 app.get('/new/*?', function getNewLink(req, res) {
+  var validUrlRegExp = /^(http(s)?:\/\/)?(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
   var url = req.params[0];
+  var isValidUrl = validUrlRegExp.test(url);
+
   var retObj;
-
-  urls.some(function isUrlThere(urlObj) {
-    if (urlObj.original_url === url) {
-      retObj = urlObj;
-      return true;
+  if (isValidUrl){
+    if (!/^http(s)?:\/\//.test(url)) {
+      url = 'http://' + url;
     }
-    return false;
-  });
+    urls.some(function isUrlThere(urlObj) {
+      if (urlObj.original_url === url) {
+        retObj = urlObj;
+        return true;
+      }
+      return false;
+    });
 
-  if(!retObj) {
-    var host = req.get('host');
+    if(!retObj) {
+      var host = req.get('host');
 
-    retObj = {
-      original_url: url,
-      short_url: 'http://' + host + '/' + urls.length,
-    };
+      retObj = {
+        original_url: url,
+        short_url: 'http://' + host + '/' + urls.length,
+      };
 
-    urls.push(retObj);
+      urls.push(retObj);
+    }
+
+    res.json(retObj);
+  } else {
+    var errorObj = {
+      error: 'URL invalid'
+    }
+    res.json(errorObj);
   }
-
-  res.json(retObj);
 });
 
 app.get('/:urlIndex', function serveShotenedUrl(req, res){
